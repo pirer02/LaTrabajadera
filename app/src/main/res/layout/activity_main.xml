@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/orangeApp"
+    android:id="@+id/main"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inicio_Seguridad.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/redondeo_de_imagen"
+        android:clipToOutline="true"
+        android:outlineProvider="background"
+        android:scaleType="centerCrop"
+
+        app:srcCompat="@drawable/trabajadera_icono" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="La Trabajadera"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+         />
+
+    <EditText
+        android:id="@+id/IniciarSesionCorreo"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/redondeo_de_imagen"
+        android:hint="   Correo Electrónico"
+        />
+    <EditText
+        android:id="@+id/IniciarSesionContraseña"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/redondeo_de_imagen"
+
+        android:hint="   Contraseña"
+        />
+
+
+    <TextView
+        android:id="@+id/textoContraseniaOlvidada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="¿Te olvidastes de tu contraseña?\nPincha aquí" />
+
+
+    <Button
+        android:id="@+id/IniciarSesionBotonIniciar"
+        android:layout_width="250dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@null"
+        android:background="@drawable/redondeo_de_imagen"
+        android:textColor="@color/orangeApp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="INICIAR SESIÓN" />
+
+    <Button
+        android:id="@+id/IniciarSesionBotonRegistrarse"
+        android:layout_width="250dp"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@null"
+        android:background="@drawable/redondeo_de_imagen"
+        android:textColor="@color/orangeApp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+
+        android:layout_height="wrap_content"
+        android:text="REGÍSTRATE" />
+
+
+    <ImageButton
+        android:id="@+id/botonGoogle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/redondeo_de_imagen"
+
+
+        app:srcCompat="@drawable/google" />
+
+
+
+
+</LinearLayout>

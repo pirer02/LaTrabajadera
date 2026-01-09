@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/orangeApp"
+    android:id="@+id/main"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inicio_Seguridad.PantallaRecuperarContrasenia">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recupera tu cuenta" />
+
+    <TextView
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Introduce tu correo electrónico y te enviaremos un código para recuperar tu contraseña" />
+
+
+    <EditText
+        android:id="@+id/correoRecuperar"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+
+        android:background="@drawable/redondeo_de_imagen"
+        />
+
+    <Button
+        android:id="@+id/botonConfirmar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Confirmar" />
+
+    <Button
+        android:id="@+id/botonVolver"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Volver" />
+
+
+</LinearLayout>

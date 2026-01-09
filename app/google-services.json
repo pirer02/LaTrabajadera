@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "66263298891",
+    "project_id": "trabajadera-7d828",
+    "storage_bucket": "trabajadera-7d828.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66263298891:android:a03ad31c9842be95432ece",
+        "android_client_info": {
+          "package_name": "com.example.trabajadera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66263298891-o6io3tuh22ng2l8o4vgphblu274qf32b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJM8B1ViuOLU_Pym781iCEbsp-rHk-yyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66263298891-o6io3tuh22ng2l8o4vgphblu274qf32b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

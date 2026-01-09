@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">La Trabajadera</string>
+
+
+
+
+    <string name="email_body"><![CDATA[
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <title>Código de confirmación:</title>
+    </head>
+    <body style="margin:0;padding:20px;font-family:'Georgia',serif;background:#ffffff;">
+      <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;
+                  border:3px solid #ddb337;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+
+        <!-- Encabezado dorado -->
+        <div style="background:#ddb337;color:#fff;padding:20px;text-align:center;
+                    border-bottom:4px double #fff;">
+          <h1 style="margin:0;font-size:26px;font-family:'Georgia',serif;letter-spacing:1px;">
+            ✝ Código de Confirmación ✝
+          </h1>
+        </div>
+
+        <!-- Cuerpo del mensaje -->
+        <div style="padding:30px;color:#333;line-height:1.6;font-size:16px;">
+          <p style="text-align:center;font-style:italic;">
+            Gracias por unirte a <strong>Trabajadera</strong>.
+            Que este paso sea el inicio de un camino lleno de luz.
+          </p>
+
+          <p style="text-align:center;margin:30px 0;">
+            <span style="display:inline-block;padding:15px 25px;font-size:22px;
+                         color:#ddb337;border:3px solid #ddb337;border-radius:8px;
+                         background:#fff;font-weight:bold;">
+              %1$s
+            </span>
+          </p>
+
+          <p style="font-size:14px;color:#555;text-align:center;">
+            No compartas este código con nadie.
+            Si no solicitaste este correo, simplemente ignóralo.
+          </p>
+        </div>
+
+        <!-- Pie de página -->
+        <div style="background:#fdf8e4;padding:15px;text-align:center;font-size:12px;
+                    color:#7a6a2f;border-top:2px solid #ddb337;">
+          © 2025 Trabajadera. Todos los derechos reservados.
+        </div>
+      </div>
+    </body>
+    </html>
+    ]]>
+    </string>
+
+
+    <string name="prefs_file">com.mouredev.firebasetutorial.PREFERENCE_FILE_KEY</string>
+
+    <string name="default_web_client_id" translatable="false">
+    66263298891-o6io3tuh22ng2l8o4vgphblu274qf32b.apps.googleusercontent.com
+    </string>
+
+    <string-array name="tipos_paso">
+        <item>Palio</item>
+        <item>Misterio</item>
+    </string-array>
+
+
+
+</resources>
+
