@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutItemPosicion"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:background="@drawable/bg_card"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingVertical="4dp"
+    android:paddingHorizontal="1dp">
+
+    <TextView
+        android:id="@+id/txtAlturaCompacto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="175 cm"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/txtNombreCompacto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Nombre"
+        android:textColor="@android:color/black"
+        android:textSize="9sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtApellidoCompacto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Apellido"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="8sp" />
+
+    <Button
+        android:id="@+id/btnAqui"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="2dp"
+        android:backgroundTint="@color/orangeApp"
+        android:text="AQUÍ"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:textSize="7sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnCancelarSwap"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginTop="2dp"
+        android:backgroundTint="@android:color/black"
+        android:text="X"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:textSize="7sp"
+        android:visibility="gone" />
+
+</LinearLayout>

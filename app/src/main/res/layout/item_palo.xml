@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardPalo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginHorizontal="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/orangeApp"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/txtTituloPalo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1º Trabajadera"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:textColor="@android:color/black"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexboxCostaleros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:flexWrap="nowrap"
+            app:justifyContent="center"
+            app:alignItems="stretch" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,73 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center_horizontal"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Lista de pasos"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/orangeApp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Contenedor horizontal: buscador + botón crear -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp"
+        android:paddingHorizontal="16dp">
+
+        <!-- Barra de búsqueda estilo Material -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchContainerPasos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Buscar paso..."
+            app:startIconDrawable="@android:drawable/ic_menu_search">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/buscadorPasos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón crear paso amarillo con icono blanco -->
+        <ImageButton
+            android:id="@+id/crearPaso"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/orangeApp"
+            android:background="@drawable/bg_orange_circle"
+            android:contentDescription="Crear paso"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/aniadir"
+            app:tint="@android:color/white"/>
+    </LinearLayout>
+
+    <!-- Recycler con lista de pasos (ahora ocupa toda la anchura hasta las esquinas) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPasos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+
+</LinearLayout>

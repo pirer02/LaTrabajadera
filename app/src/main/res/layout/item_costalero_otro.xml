@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutItemOtro"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/bg_card"
+    android:layout_marginBottom="8dp">
+
+    <!-- Nombre y Apellido -->
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre Apellido"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/black" />
+
+    <!-- Altura base -->
+    <TextView
+        android:id="@+id/txtAltura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Altura: 175 cm"
+        android:textSize="14sp" />
+
+    <!-- Suplementos -->
+    <TextView
+        android:id="@+id/txtSuplementos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Suplementos: 0"
+        android:textSize="14sp" />
+
+    <!-- Altura total -->
+    <TextView
+        android:id="@+id/txtAlturaTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Altura Final: 175 cm"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <!-- Botones de suplementos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddSup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/grisacio"
+            android:text="+ Suplemento" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRemoveSup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/grisacio"
+            android:text="- Suplemento" />
+    </LinearLayout>
+
+    <!-- Botón Aceptar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAceptar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/orangeApp"
+        android:layout_marginTop="12dp" />
+
+</LinearLayout>
