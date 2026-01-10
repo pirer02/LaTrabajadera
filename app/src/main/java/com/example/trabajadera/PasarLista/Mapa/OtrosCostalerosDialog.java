@@ -37,7 +37,6 @@ public class OtrosCostalerosDialog extends DialogFragment {
         return dialog;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +48,10 @@ public class OtrosCostalerosDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getContext())
-                .inflate(R.layout.dialog_otros_costaleros, null);
+        // Inflamos el XML que me acabas de pasar
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_otros_costaleros, null);
 
+        // CORRECCIÓN DE IDs: Ahora coinciden exactamente con tu XML
         EditText edtBuscar = view.findViewById(R.id.edtBuscarCostalero);
         RecyclerView recycler = view.findViewById(R.id.recyclerOtrosCostaleros);
         MaterialButton btnAtras = view.findViewById(R.id.btnAtrasOtros);
@@ -59,26 +59,16 @@ public class OtrosCostalerosDialog extends DialogFragment {
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         OtrosCostalerosAdapter adapter = new OtrosCostalerosAdapter(costalerosSobrantes, costalero -> {
-            OnOtrosCostaleroListener listener = null;
-
-            if (getTargetFragment() instanceof OnOtrosCostaleroListener) {
-                listener = (OnOtrosCostaleroListener) getTargetFragment();
-            } else if (getParentFragment() instanceof OnOtrosCostaleroListener) {
-                listener = (OnOtrosCostaleroListener) getParentFragment();
-            } else if (getActivity() instanceof OnOtrosCostaleroListener) {
-                listener = (OnOtrosCostaleroListener) getActivity();
-            }
-
+            OnOtrosCostaleroListener listener = getListener();
             if (listener != null) {
                 listener.onSwapWithOther(costalero);
             }
-
             dismiss();
         });
 
         recycler.setAdapter(adapter);
 
-        // Filtro de búsqueda
+        // Filtro de búsqueda usando el ID correcto
         edtBuscar.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -91,8 +81,16 @@ public class OtrosCostalerosDialog extends DialogFragment {
 
         Dialog dialog = new Dialog(requireContext());
         dialog.setContentView(view);
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
         return dialog;
     }
-}
 
+    private OnOtrosCostaleroListener getListener() {
+        if (getTargetFragment() instanceof OnOtrosCostaleroListener) return (OnOtrosCostaleroListener) getTargetFragment();
+        if (getParentFragment() instanceof OnOtrosCostaleroListener) return (OnOtrosCostaleroListener) getParentFragment();
+        if (getActivity() instanceof OnOtrosCostaleroListener) return (OnOtrosCostaleroListener) getActivity();
+        return null;
+    }
+}

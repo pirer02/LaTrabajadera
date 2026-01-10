@@ -1,19 +1,24 @@
 package com.example.trabajadera.PasarLista.Mapa;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trabajadera.CrearPaso.Costaleros.Costalero;
 import com.example.trabajadera.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OtrosCostalerosAdapter extends RecyclerView.Adapter<OtrosCostalerosAdapter.ViewHolder> {
 
@@ -35,38 +40,68 @@ public class OtrosCostalerosAdapter extends RecyclerView.Adapter<OtrosCostaleros
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_costalero_otro, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_costalero_otro, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder h, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Costalero c = listaFiltrada.get(position);
 
-        h.txtNombre.setText(c.getNombre() + " " + c.getApellido());
-        h.txtAltura.setText("Altura: " + c.getAltura() + " cm");
-        h.txtSuplementos.setText("Suplementos: " + c.getSuplementos());
-        h.txtAlturaTotal.setText("Altura Final: " + c.getAlturaTotal() + " cm");
+        holder.txtNombre.setText(c.getNombre() + " " + c.getApellido());
+        holder.txtAltura.setText("Altura base: " + c.getAltura() + " cm");
 
-        // Botón + suplemento
-        h.btnAddSup.setOnClickListener(v -> {
-            c.addSuplemento();
-            notifyItemChanged(position);
+        actualizarTextosSuplemento(holder, c);
+
+        // Botón para editar suplemento con el nuevo BottomSheet
+        holder.btnEditarSuplemento.setOnClickListener(v -> {
+            mostrarDialogoEdicionSuplemento(v.getContext(), c, holder);
         });
 
-        // Botón - suplemento
-        h.btnRemoveSup.setOnClickListener(v -> {
-            c.removeSuplemento();
-            notifyItemChanged(position);
-        });
-
-        // Botón Aceptar
-        h.btnAceptar.setOnClickListener(v -> {
+        // Botón para confirmar selección (el de la derecha)
+        holder.btnAceptar.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onCostaleroSeleccionado(c);
             }
         });
+    }
+
+    private void actualizarTextosSuplemento(ViewHolder holder, Costalero c) {
+        holder.txtSuplementos.setText(String.format(Locale.getDefault(), "Suplemento: %.2f cm", (double) c.getSuplementos()));
+        holder.txtAlturaTotal.setText(String.format(Locale.getDefault(), "Altura Final: %.2f cm", (double) c.getAlturaTotal()));
+    }
+
+    private void mostrarDialogoEdicionSuplemento(Context context, Costalero costalero, ViewHolder holder) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_editar_suplemento, null);
+        bottomSheetDialog.setContentView(view);
+
+        TextView tvNombre = view.findViewById(R.id.tvNombreCostaleroDialogo);
+        TextInputEditText etSuplemento = view.findViewById(R.id.etValorSuplemento);
+        MaterialButton btnGuardar = view.findViewById(R.id.btnGuardarSuplemento);
+
+        tvNombre.setText(costalero.getNombre() + " " + costalero.getApellido());
+        String actual = String.valueOf(costalero.getSuplementos()).replace('.', ',');
+        etSuplemento.setText(actual);
+
+        btnGuardar.setOnClickListener(v -> {
+            String valorStr = etSuplemento.getText().toString().trim();
+            if (!valorStr.isEmpty()) {
+                try {
+                    double nuevoSup = Double.parseDouble(valorStr.replace(',', '.'));
+                    costalero.setSuplementos((int) nuevoSup);
+
+                    // Actualizamos el item en la lista del buscador
+                    actualizarTextosSuplemento(holder, costalero);
+
+                    bottomSheetDialog.dismiss();
+                } catch (NumberFormatException e) {
+                    Toast.makeText(context, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        bottomSheetDialog.show();
     }
 
     @Override
@@ -92,7 +127,7 @@ public class OtrosCostalerosAdapter extends RecyclerView.Adapter<OtrosCostaleros
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtNombre, txtAltura, txtSuplementos, txtAlturaTotal;
-        MaterialButton btnAddSup, btnRemoveSup, btnAceptar;
+        MaterialButton btnEditarSuplemento, btnAceptar;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -100,8 +135,7 @@ public class OtrosCostalerosAdapter extends RecyclerView.Adapter<OtrosCostaleros
             txtAltura = itemView.findViewById(R.id.txtAltura);
             txtSuplementos = itemView.findViewById(R.id.txtSuplementos);
             txtAlturaTotal = itemView.findViewById(R.id.txtAlturaTotal);
-            btnAddSup = itemView.findViewById(R.id.btnAddSup);
-            btnRemoveSup = itemView.findViewById(R.id.btnRemoveSup);
+            btnEditarSuplemento = itemView.findViewById(R.id.btnEditarSuplementoOtro);
             btnAceptar = itemView.findViewById(R.id.btnAceptar);
         }
     }

@@ -1,14 +1,11 @@
 package com.example.trabajadera.PasarLista.Mapa;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,17 +14,19 @@ import androidx.fragment.app.DialogFragment;
 import com.example.trabajadera.CrearPaso.Costaleros.Costalero;
 import com.example.trabajadera.PasarLista.PositionCell;
 import com.example.trabajadera.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Locale;
 
 public class DetalleCostaleroDialog extends DialogFragment {
 
     public interface OnAccionListener {
         void onIniciarCambioPosicion(int posAbs);
-        // Nuevo método para avisar que los datos del costalero han cambiado en memoria
         void onDatosCostaleroEditados();
     }
 
-    private static final String TAG = "DetalleCostaleroDialog";
     private static final String ARG_POS_ABS = "posAbs";
     private static final String ARG_SHOW_SWAP = "showSwap";
 
@@ -61,12 +60,10 @@ public class DetalleCostaleroDialog extends DialogFragment {
         MaterialButton btnCambiar = view.findViewById(R.id.btnCambiarPosicion);
         MaterialButton btnEditarSuplemento = view.findViewById(R.id.btnEditarSuplemento);
 
-        // Cargar datos iniciales
         if (cell != null && cell.costalero != null) {
             actualizarTextos(cell.costalero, txtNombre, txtApellido, txtAltura, txtPosicion);
         }
 
-        // Lógica para cambiar suplemento solo en memoria
         btnEditarSuplemento.setOnClickListener(v -> mostrarDialogoInputSuplemento());
 
         btnAtras.setOnClickListener(v -> dismiss());
@@ -94,46 +91,64 @@ public class DetalleCostaleroDialog extends DialogFragment {
     }
 
     private void actualizarTextos(Costalero c, TextView n, TextView a, TextView alt, TextView pos) {
-        n.setText("Nombre: " + c.getNombre());
-        a.setText("Apellido: " + c.getApellido());
-        alt.setText("Altura: " + c.getAltura() + " cm");
-        txtSuplemento.setText("Suplemento: " + c.getSuplementos() + " cm");
-        txtAlturaTotal.setText("Altura Final: " + c.getAlturaTotal() + " cm");
-        pos.setText("Posición: " + cell.posicionAbs);
+        if (n != null) n.setText("Nombre: " + c.getNombre());
+        if (a != null) a.setText("Apellido: " + c.getApellido());
+        if (alt != null) alt.setText("Altura: " + c.getAltura() + " cm");
+
+        txtSuplemento.setText(String.format(Locale.getDefault(), "Suplemento: %.2f cm", (double) c.getSuplementos()));
+        txtAlturaTotal.setText(String.format(Locale.getDefault(), "Altura Final: %.2f cm", (double) c.getAlturaTotal()));
+        if (pos != null) pos.setText("Posición: " + cell.posicionAbs);
     }
 
     private void mostrarDialogoInputSuplemento() {
         if (cell == null || cell.costalero == null) return;
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Nuevo Suplemento (cm)");
+        // 1. Usamos BottomSheetDialog para que aparezca desde abajo
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
 
-        final EditText input = new EditText(getContext());
-        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-        input.setText(String.valueOf(cell.costalero.getSuplementos()));
-        builder.setView(input);
+        View customView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_editar_suplemento, null);
+        bottomSheetDialog.setContentView(customView);
 
-        builder.setPositiveButton("Terminar", (dialog, which) -> {
-            String valor = input.getText().toString();
-            if (!valor.isEmpty()) {
-                int nuevoSuplemento = Integer.parseInt(valor);
+        TextView tvNombre = customView.findViewById(R.id.tvNombreCostaleroDialogo);
+        TextInputEditText etSuplemento = customView.findViewById(R.id.etValorSuplemento);
+        MaterialButton btnGuardar = customView.findViewById(R.id.btnGuardarSuplemento);
 
-                // 1. Modificamos el objeto en MEMORIA
-                cell.costalero.setSuplementos(nuevoSuplemento);
+        tvNombre.setText(cell.costalero.getNombre() + " " + cell.costalero.getApellido());
 
-                // 2. Actualizamos la interfaz del diálogo actual
-                txtSuplemento.setText("Suplemento: " + nuevoSuplemento + " cm");
-                txtAlturaTotal.setText("Altura Final: " + cell.costalero.getAlturaTotal() + " cm");
+        // Cargar suplemento actual (cambiando punto por coma)
+        String actual = String.valueOf(cell.costalero.getSuplementos()).replace('.', ',');
+        etSuplemento.setText(actual);
 
-                // 3. Avisamos al Fragment para que refresque el mapa (notifyDataSetChanged)
-                OnAccionListener listener = getListener();
-                if (listener != null) {
-                    listener.onDatosCostaleroEditados();
+        btnGuardar.setOnClickListener(v -> {
+            String valorStr = etSuplemento.getText().toString().trim();
+
+            if (!valorStr.isEmpty()) {
+                try {
+                    double nuevoSuplemento = Double.parseDouble(valorStr.replace(',', '.'));
+
+                    // Guardamos en memoria (mantenemos el cast a int si tu modelo es int)
+                    cell.costalero.setSuplementos((int) nuevoSuplemento);
+
+                    // Actualizamos la tarjeta de detalle (la que está detrás)
+                    actualizarTextos(cell.costalero, null, null, null, null);
+
+                    // Refrescamos el Fragment principal
+                    OnAccionListener listener = getListener();
+                    if (listener != null) {
+                        listener.onDatosCostaleroEditados();
+                    }
+
+                    bottomSheetDialog.dismiss();
+
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getContext(), "Formato de número incorrecto", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                etSuplemento.setError("Introduce un valor");
             }
         });
-        builder.setNegativeButton("Cancelar", null);
-        builder.show();
+
+        bottomSheetDialog.show();
     }
 
     private OnAccionListener getListener() {
