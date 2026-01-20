@@ -89,12 +89,21 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/layoutContenedorPalos"
+            <com.example.trabajadera.PasarLista.Mapa.ZoomLayout
+                android:id="@+id/zoomLayoutMapa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                android:padding="8dp" />
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/layoutContenedorPalos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:padding="8dp" />
+
+            </com.example.trabajadera.PasarLista.Mapa.ZoomLayout>
 
             <LinearLayout
                 android:id="@+id/layoutBotonOtros"
