@@ -1,4 +1,4 @@
-package com.example.trabajadera.CrearPaso.FragCrearPaso3;
+package com.example.trabajadera.CrearPaso;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.trabajadera.CrearPaso.PasoViewModel;
 import com.example.trabajadera.CrearPaso.Costaleros.Costalero;
 import com.example.trabajadera.CrearPaso.FragCrearPaso4.FragCrearPaso4;
 import com.example.trabajadera.PasarLista.PositionCell;

@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trabajadera.CrearPaso.Costaleros.Costalero;
 import com.example.trabajadera.CrearPaso.Costaleros.CostaleroAdapter;
-import com.example.trabajadera.CrearPaso.FragCrearPaso3.FragCrearPaso3;
 import com.example.trabajadera.R;
 import com.google.android.material.button.MaterialButton;
 
