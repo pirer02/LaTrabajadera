@@ -40,7 +40,7 @@ public class FragCrearPaso3 extends Fragment implements PalosAdapter.OnMapaCellL
     private int maxCostaleros;
     private ArrayList<Costalero> listaCostaleros;
 
-    private List<List<PositionCell>> grid; // Estructura unificada [filas][5 columnas]
+    private List<List<PositionCell>> grid;
     private PalosAdapter palosAdapter;
     private PositionCell pendingSwapCell = null;
 
@@ -68,7 +68,10 @@ public class FragCrearPaso3 extends Fragment implements PalosAdapter.OnMapaCellL
             maxCostaleros = args.getInt("costaleros", 0);
         }
 
-        txtResumenPaso.setText("Capataz: " + capataz + " • F Hermandad: " + hermandad + " • Trabajaderas: " + trabajaderas);
+        txtResumenPaso.setText("Capataz: " + capataz + " • Hermandad: " + hermandad + " • Trabajaderas: " + trabajaderas);
+
+        // SOLUCIÓN: Sincroniza los parámetros con el ViewModel compartido de la actividad
+        pasoViewModel.setDatosPaso(capataz, ciudad, hermandad, paso, tipoPaso, trabajaderas, maxCostaleros);
 
         prepararGridEstructural();
 
@@ -76,7 +79,6 @@ public class FragCrearPaso3 extends Fragment implements PalosAdapter.OnMapaCellL
         palosAdapter = new PalosAdapter(grid, this, this);
         recyclerFilas.setAdapter(palosAdapter);
 
-        // Permitimos arrastrar e intercambiar la posición de las filas completas exactamente igual que en edición
         ItemTouchHelper touchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -130,11 +132,9 @@ public class FragCrearPaso3 extends Fragment implements PalosAdapter.OnMapaCellL
         for (int r = 0; r < filas; r++) {
             List<PositionCell> filaCeldas = new ArrayList<>();
             for (int c = 0; c < 5; c++) {
-                // Generamos celdas con su identificador absoluto inicial
                 filaCeldas.add(new PositionCell(r, c, (r * 5) + c + 1, null));
             }
 
-            // Patrón clásico (Reparto equilibrado de palos)
             int[] distribucionCeldas = {0, 4, 1, 3, 2};
             for (int slot : distribucionCeldas) {
                 if (index < ordenados.size()) {
@@ -170,7 +170,6 @@ public class FragCrearPaso3 extends Fragment implements PalosAdapter.OnMapaCellL
 
     @Override
     public void onNormalClick(PositionCell cell) {
-        // Al hacer click normal activamos el modo Swap dinámico mostrando los botones AQUÍ
         pendingSwapCell = cell;
         palosAdapter.notifyDataSetChanged();
         Toast.makeText(getContext(), "Selecciona el hueco de destino", Toast.LENGTH_SHORT).show();
@@ -179,7 +178,6 @@ public class FragCrearPaso3 extends Fragment implements PalosAdapter.OnMapaCellL
     @Override
     public void onSwapConfirmed(PositionCell target) {
         if (pendingSwapCell != null) {
-            // Ejecutamos el swap nativo en memoria de forma inmediata
             Costalero temporal = pendingSwapCell.costalero;
             pendingSwapCell.costalero = target.costalero;
             target.costalero = temporal;
