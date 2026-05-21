@@ -15,7 +15,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class MailSender {
-    private static final String SENDER_EMAIL    = "email";
+    private static final String SENDER_EMAIL    = "email ";
     private static final String SENDER_PASSWORD = "contraseña";
 
     public interface MailCallback {
