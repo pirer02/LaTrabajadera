@@ -18,12 +18,12 @@ public class PasoViewModel extends ViewModel {
     private String capataz, ciudad, hermandad, paso, tipoPaso;
     private int trabajaderas, maxCostaleros;
 
-    // --- Costaleros temporales ---
+    // Costaleros temporales
     public List<Costalero> getListaCostaleros() { return listaCostaleros; }
     public void addCostalero(Costalero c) { listaCostaleros.add(c); }
     public void clearCostaleros() { listaCostaleros.clear(); }
 
-    // --- Cuadrillas definitivas (asignaciones) ---
+    //Cuadrillas definitivas (asignaciones)
     public List<List<FragCrearPaso3.Asignacion>> getCuadrillasAsignaciones() { return cuadrillasAsignaciones; }
     public void addCuadrillaAsignaciones(List<FragCrearPaso3.Asignacion> asignaciones) {
         // Permitimos máx 3 cuadrillas

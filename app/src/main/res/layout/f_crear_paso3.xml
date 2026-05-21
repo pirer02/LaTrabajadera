@@ -1,79 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/white">
 
-    <!-- Cabecera -->
-    <LinearLayout
-        android:id="@+id/headerCabecera"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@drawable/bg_card"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/txtTitulo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ordenar cuadrilla"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/orangeApp"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtResumenPaso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Capataz • Tipo • Hermandad • Max costaleros"
-            android:textSize="14sp"/>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/contenedorMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@color/white"
+                android:elevation="4dp">
 
-    <!-- Lista de filas (trabajaderas) -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerFilas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/headerCabecera"
-        app:layout_constraintBottom_toTopOf="@id/btnGuardar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+                <TextView
+                    android:id="@+id/txtTituloCrear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ordenar Cuadrilla"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/orangeApp" />
 
-    <!-- Botón guardar -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnGuardar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_green_dark"
-        android:text="Guardar"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/txtResumenPaso"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Capataz • Tipo • Hermandad"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"/>
+            </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnVolver"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver atrás"
-        android:layout_marginBottom="12dp"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/holo_red_dark"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toTopOf="@id/btnGuardar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVolver"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:text="Volver Atrás"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    app:cornerRadius="8dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGuardar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Siguiente Paso"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@color/orangeApp"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+
+            <com.example.trabajadera.PasarLista.Mapa.ZoomLayout
+                android:id="@+id/zoomLayoutMapa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerFilas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:padding="8dp" />
+
+            </com.example.trabajadera.PasarLista.Mapa.ZoomLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

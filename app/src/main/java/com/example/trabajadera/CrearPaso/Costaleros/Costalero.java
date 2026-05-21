@@ -6,13 +6,13 @@ public class Costalero implements Serializable {
     private String id;
     private String nombre;
     private String apellido;
-    private double altura;          // Firestore: "altura"
+    private double altura;
     private double suplementos;
-    private boolean asistencia;  // pasar lista (presente)
+    private boolean asistencia;
 
-    private int fila;            // -1 si vacío
-    private int columna;         // -1 si vacío
-    private int posicionAbs;     // -1 si vacío
+    private int fila;
+    private int columna;
+    private int posicionAbs;
 
     public Costalero() { }
 

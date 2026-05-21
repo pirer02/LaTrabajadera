@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             public void updateDrawState(@NonNull TextPaint ds) {
                 super.updateDrawState(ds);
                 ds.setUnderlineText(false); // Opcional: quitar subrayado
-                ds.setColor(Color.BLACK);  // Opcional: cambiar color del texto clicable
+                ds.setColor(Color.BLACK);
             }
         };
 
