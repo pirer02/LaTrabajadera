@@ -6,7 +6,8 @@
 **LaTrabajadera** es una aplicación diseñada para optimizar, organizar y mapear de forma dinámica la disposición y el orden de los costaleros debajo de los pasos de Semana Santa. La herramienta permite gestionar las posiciones de forma personalizada basándose en cuadrantes y alturas.
 
 ## ⛪ Vistazo a la Aplicación
-> **Nota para ti:** Aquí es crucial incluir una captura de pantalla del mapa dinámico o del cuadrante donde se organizan los costaleros. Ver cómo se distribuyen visualmente las posiciones llamará muchísimo la atención.
+<img width="255" height="512" alt="image" src="https://github.com/user-attachments/assets/9597f5c8-3428-424c-8a97-867684f5ad64" />
+
 <div align="center">
   <img src="enlace_captura_cuadrante.png" width="200"/>
   <img src="enlace_captura_gestion.png" width="200"/>
@@ -25,7 +26,7 @@
 ## 🚀 Descarga e Instalación
 Puedes descargar el instalador/ejecutable listo para probar desde la sección de **Releases** en la barra lateral.
 
-* [Descargar LaTrabajadera (.apk / .exe)](ENLACE_A_TU_RELEASE)
+* [Descargar LaTrabajadera (.apk)](https://github.com/pirer02/LaTrabajadera/releases/download/1.0.0/La_Trabajadera.apk)
 
 Si prefieres clonar el repositorio y compilar el código fuente:
 ```bash
