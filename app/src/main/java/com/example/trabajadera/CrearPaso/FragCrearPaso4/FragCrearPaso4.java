@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.trabajadera.CrearPaso.FragCrearPaso3.FragCrearPaso3;
+import com.example.trabajadera.CrearPaso.FragCrearPaso3;
 import com.example.trabajadera.CrearPaso.PasoViewModel;
 import com.example.trabajadera.FragPrincipal;
 import com.example.trabajadera.R;

@@ -3,7 +3,6 @@ package com.example.trabajadera.CrearPaso;
 import androidx.lifecycle.ViewModel;
 
 import com.example.trabajadera.CrearPaso.Costaleros.Costalero;
-import com.example.trabajadera.CrearPaso.FragCrearPaso3.FragCrearPaso3;
 
 import java.util.ArrayList;
 import java.util.List;
