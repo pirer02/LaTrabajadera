@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 public class PositionCell implements Serializable {
     // Índices lógicos
-    public int row; // 0-based
-    public int col; // 0-based
+    public int row;
+    public int col;
     // Datos
     public Costalero costalero; // puede ser null si vacío
 

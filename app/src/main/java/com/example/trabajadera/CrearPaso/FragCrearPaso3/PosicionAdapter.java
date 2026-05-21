@@ -26,7 +26,7 @@ public class PosicionAdapter extends RecyclerView.Adapter<PosicionAdapter.CeldaV
 
     private final Context context;
     private final List<PositionCell> celdasDeFila; // 5 celdas
-    private final int baseIndex; // número de posición inicial de la fila (1-based)
+    private final int baseIndex; // número de posición inicial de la fila
     private final OnSwapRequest swapListener;
 
     public PosicionAdapter(Context ctx, List<PositionCell> celdasDeFila, int baseIndex, OnSwapRequest swapListener) {

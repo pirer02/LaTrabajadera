@@ -13,7 +13,7 @@ import com.example.trabajadera.R;
 
 import java.util.List;
 
-public class FilasAdapter { // ¡Ya NO hereda de RecyclerView.Adapter!
+public class FilasAdapter {
 
     private final List<List<PositionCell>> grid;
     private final PosicionesAdapter.OnCellClickListener onCellClick;

@@ -42,7 +42,7 @@ public class PantallaConfirmacion extends AppCompatActivity {
     Button volver;
     String codigo;
     EditText etDigit1, etDigit2, etDigit3, etDigit4, etDigit5, etDigit6;
-    TextView tvInfo; // TextView donde mostramos el mensaje con correo, tiempo y enlace
+    TextView tvInfo; // TextView donde se muestra el mensaje con correo, tiempo y enlace
 
     CountDownTimer countDownTimer; // Temporizador de 3 minutos
 
@@ -78,15 +78,12 @@ public class PantallaConfirmacion extends AppCompatActivity {
         confirmar = findViewById(R.id.btnConfirmar);
         volver = findViewById(R.id.btnVolver);
 
-        // Iniciamos el temporizador de 3 minutos
         iniciarTemporizador();
 
-        // Acción del botón Volver
         volver.setOnClickListener(view -> {
             finish();
         });
 
-        // Acción del botón Confirmar
         confirmar.setOnClickListener(view -> {
             String inputCode = etDigit1.getText().toString().trim() +
                     etDigit2.getText().toString().trim() +

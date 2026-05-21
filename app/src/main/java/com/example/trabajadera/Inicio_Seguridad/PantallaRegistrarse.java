@@ -73,18 +73,6 @@ public class PantallaRegistrarse extends AppCompatActivity {
                 return;
             }
 
-            /* este codigo lo crea
-            FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(correo, contrasenia)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            String userEmail = task.getResult().getUser().getEmail();
-                            showHome(userEmail != null ? userEmail : "", TipoPropietario.BASIC);
-                        } else {
-                            showFirebaseError(task.getException());
-                        }
-                    });
-             */
             enviarCorreo(correo,contrasenia, nombre);
         });
 
