@@ -22,7 +22,7 @@
 ## 🛠️ Tecnologías Utilizadas
 * **Lenguaje de Programación:** Java
 * **Base de Datos y Backend:** Firebase (Realtime Database / Cloud Firestore)
-* **Entorno de Desarrollo:** Android Studio / Java SE *(Modifica según corresponda)*
+* **Entorno de Desarrollo:** Android Studio / Java SE
 
 ## 🚀 Descarga e Instalación
 Puedes descargar el instalador/ejecutable listo para probar desde la sección de **Releases** en la barra lateral.
